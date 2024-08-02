@@ -5,6 +5,7 @@ const ceraRouter = require("./routes/ceraRoutes");
 const kapivaRouter = require("./routes/kapivaRoutes");
 const avpRouter = require("./routes/avpRoutes");
 const goqiiRouter = require("./routes/goqiiRoutes");
+const himalayanRouter = require("./routes/himalayaRoutes");
 require("dotenv").config();
 
 const app = express();
@@ -15,6 +16,7 @@ app.use("/products/cera", ceraRouter);
 app.use("/products/kapiva", kapivaRouter);
 app.use("/products/avp", avpRouter);
 app.use("/products/goqii", goqiiRouter)
+app.use("/products/himalayan", himalayanRouter)
 
 app.get("/", async (_, res) => {
   res.send("Welcome to Tata 1mg server!");
