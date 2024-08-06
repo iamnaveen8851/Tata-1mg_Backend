@@ -16,7 +16,7 @@ productRouter.get("/", async (req, res) => {
     if (title) {
       query.title = { $regex: title, $options: "i" };
     }
-    
+
     let sortOrder = {};
     if (sort === "asc") {
       sortOrder.price = 1;
@@ -27,6 +27,24 @@ productRouter.get("/", async (req, res) => {
     const data = await productModel.find(query).sort(sortOrder);
 
     res.status(200).json({ message: "All Products found successfully", data });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// GET a single product by ID
+productRouter.get("/:id", async (req, res) => {
+  try {
+    const productId = req.params.id;
+    const product = await productModel.findById(productId);
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    res
+      .status(200)
+      .json({ message: "Product found successfully", data: product });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
