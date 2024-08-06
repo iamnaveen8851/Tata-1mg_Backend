@@ -13,10 +13,14 @@ productRouter.get("/", async (req, res) => {
       query.title = { $regex: search, $options: "i" };
     }
 
+    if (title) {
+      query.title = { $regex: title, $options: "i" };
+    }
+    
     let sortOrder = {};
-    if (sort === 'asc') {
+    if (sort === "asc") {
       sortOrder.price = 1;
-    } else if (sort === 'desc') {
+    } else if (sort === "desc") {
       sortOrder.price = -1;
     }
 
