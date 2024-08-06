@@ -13,7 +13,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 app.use(cors());
 app.use(express.json());
-app.use("/products/" productRouter)
+app.use("/products/", productRouter)
 app.use("/products/cera", ceraRouter);
 app.use("/products/kapiva", kapivaRouter);
 app.use("/products/avp", avpRouter);
