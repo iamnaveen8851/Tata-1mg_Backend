@@ -28,6 +28,15 @@ app.listen(PORT, async (_, res) => {
   try {
     await connectDb;
     console.log(`Server is listening on ${PORT} and db is connected `);
+    let url = "https://tata-1mg-backend.onrender.com"
+    setInterval(async () => {
+    try {
+      const res = await axios.get(url);
+      console.log(`Keep alive ping sent, status:`, res.status);
+    } catch (error) {
+      console.error(`Keep alive ping failed:`, error.message);
+    }
+  }, 840000); // after every 14 minutes
   } catch (error) {
     console.log(error.message);
   }
